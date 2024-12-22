@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.user-card {
+    width: 100%; /* Ширина карточки будет равна ширине колонки */
+    height: 500px; /* Фиксированная высота для карточки */
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов внутри карточки */
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* Скрыть содержимое, выходящее за пределы карточки */
+    align-items: center; /* Центрирование содержимого по горизонтали */
+}
+
+.user-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-card img,
+.card-img-top {
+    width: 80%; /* Изображение растянется по ширине контейнера */
+    height: 350px; /* Фиксированная высота для изображения */
+    object-fit: cover; /* Изображение будет заполнено, сохраняя пропорции */
+    align-self: center; /* Центрирование изображения по горизонтали */
+    margin-top: 15px; /* Отступ сверху для изображения */
+}
+
+.user-card .card-body {
+    flex-grow: 1; /* Карточка тела будет занимать оставшееся пространство */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрирование текста по вертикали */
+}
+</style>
+<div class="row mb-4">
+    <div class="col-12">
+        <form method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control") }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    {{ form.birth_date.label(class="form-label") }}
+                    {{ form.birth_date(class="form-control") }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    {{ form.city.label(class="form-label") }}
+                    {{ form.city(class="form-control") }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    {{ form.photo.label(class="form-label") }}
+                    {{ form.photo(class="form-control") }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    {{ form.submit(class="btn btn-primary mt-4") }}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    {% for user in users %}
+    <div class="col-md-4 mb-3">
+        <div class="card user-card">
+            <img src="{{ url_for('static', filename='uploads/' ~ user.photo) }}" class="card-img-top" alt="User Photo">
+            <div class="card-body">
+                <h5 class="card-title">{{ user.name }}</h5>
+                <p class="card-text">
+                    <strong>Email:</strong> {{ user.email }}<br>
+                    <strong>Дата рождения:</strong> {{ user.birth_date }}<br>
+                    <strong>Город:</strong> {{ user.city }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="mt-4" style="background-color: #f8f9fa;">
+    <!-- Перспективный контент будет добавлен здесь -->
+</div>
+{% endblock %}

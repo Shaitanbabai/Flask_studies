@@ -1,0 +1,30 @@
+.user-card {
+    width: 100%; /* Ширина карточки будет равна ширине колонки */
+    height: 500px; /* Фиксированная высота для карточки */
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов внутри карточки */
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* Скрыть содержимое, выходящее за пределы карточки */
+    align-items: center; /* Центрирование содержимого по горизонтали */
+}
+
+.user-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-card img,
+.card-img-top {
+    width: 80%; /* Изображение растянется по ширине контейнера */
+    height: 350px; /* Фиксированная высота для изображения */
+    object-fit: cover; /* Изображение будет заполнено, сохраняя пропорции */
+    align-self: center; /* Центрирование изображения по горизонтали */
+    margin-top: 15px; /* Отступ сверху для изображения */
+}
+
+.user-card .card-body {
+    flex-grow: 1; /* Карточка тела будет занимать оставшееся пространство */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрирование текста по вертикали */
+}

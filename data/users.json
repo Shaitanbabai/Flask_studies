@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Marx",
+        "email": "marx@m.de",
+        "birth_date": "1818-05-05",
+        "city": "Trire",
+        "photo": "marx.png"
+    },
+    {
+        "name": "Mao",
+        "email": "mao@m.cn",
+        "birth_date": "1893-12-23",
+        "city": "Shaoshang",
+        "photo": "1.jpg"
+    },
+    {
+        "name": "Vlad",
+        "email": "vlad@v.su",
+        "birth_date": "1870-04-22",
+        "city": "Simbirsk",
+        "photo": "jpg"
+    }
+]

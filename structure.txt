@@ -1,0 +1,10 @@
+flask_project/
+│
+├── app.py
+├── templates/
+│   ├── base.html
+│   └── index.html
+├── static/
+│   ├── css/
+│   └── uploads/
+└── forms.py
