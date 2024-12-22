@@ -1,6 +1,9 @@
 flask_project/
 │
 ├── app.py
+├── requirements.txt
+├── config.py
+├── data/
 ├── templates/
 │   ├── base.html
 │   └── index.html
