@@ -1,5 +1,6 @@
 import os
 import json
+import requests
 from flask import Flask, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 from forms import UserForm
@@ -25,6 +26,18 @@ def save_users_data(card_data):
 
 users_data = load_users_data()
 
+
+# Функция для получения случайной цитаты из API
+def get_random_quote():
+    try:
+        response = requests.get("https://api.quotable.io/random")
+        if response.status_code == 200:
+            data = response.json()
+            return data.get('content', 'No quote found') + " - " + data.get('author', 'Unknown')
+    except requests.RequestException as e:
+        return "Не удалось получить цитату, попробуйте позже."
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = UserForm()
@@ -44,7 +57,8 @@ def index():
         save_users_data(users_data)  # Сохраняем данные при каждом добавлении пользователя
         return redirect(url_for('index'))
 
-    return render_template('index.html', form=form, users=users_data)
+    random_quote = get_random_quote()  # Получаем случайную цитату
+    return render_template('index.html', form=form, users=users_data, quote=random_quote)
 
 if __name__ == '__main__':
     app.run(debug=True)
